@@ -1,3 +1,13 @@
+
+# Ignore all directories except FTCRobotContoller
+
+/*
+!/FTCRobotController
+
+# Ignore all but src folder
+/FTCRobotController/*
+!/FTCRobotController/src
+
 # built application files
 *.apk
 *.ap_
