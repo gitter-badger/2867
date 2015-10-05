@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion = 'Google Inc.:Google APIs:19'
+    compileSdkVersion 21
     buildToolsVersion = '21.1.2'
 
     defaultConfig {
+        applicationId "org.robotics.psdr3.2867"
         minSdkVersion 16
-        targetSdkVersion 19
+        targetSdkVersion 21
     }
 }
 
@@ -45,4 +46,5 @@ dependencies {
     compile (name:'ModernRobotics-release', ext:'aar')
     compile (name:'Analytics-release', ext:'aar')
     compile (name:'WirelessP2p-release', ext:'aar')
+    compile 'com.android.support:appcompat-v7:21.0.3'
 }
