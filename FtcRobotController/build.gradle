@@ -1,19 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-<<<<<<< HEAD
     compileSdkVersion 21
     buildToolsVersion = '21.1.2'
 
-=======
->>>>>>> ftctechnh/master
     defaultConfig {
         applicationId "org.robotics.psdr3.2867"
         minSdkVersion 16
         targetSdkVersion 21
     }
-    compileSdkVersion 'Google Inc.:Google APIs:19'
-    buildToolsVersion '21.1.2'
 }
 
 buildscript {
@@ -45,7 +40,6 @@ allprojects {
 
 dependencies {
     compile files('libs/android-support-v4.jar')
-<<<<<<< HEAD
     compile (name:'RobotCore-release', ext:'aar')
     compile (name:'Hardware-release', ext:'aar')
     compile (name:'FtcCommon-release', ext:'aar')
@@ -53,12 +47,10 @@ dependencies {
     compile (name:'Analytics-release', ext:'aar')
     compile (name:'WirelessP2p-release', ext:'aar')
     compile 'com.android.support:appcompat-v7:21.0.3'
-=======
     compile(name: 'RobotCore-release', ext: 'aar')
     compile(name: 'Hardware-release', ext: 'aar')
     compile(name: 'FtcCommon-release', ext: 'aar')
     compile(name: 'ModernRobotics-release', ext: 'aar')
     compile(name: 'Analytics-release', ext: 'aar')
     compile(name: 'WirelessP2p-release', ext: 'aar')
->>>>>>> ftctechnh/master
 }
