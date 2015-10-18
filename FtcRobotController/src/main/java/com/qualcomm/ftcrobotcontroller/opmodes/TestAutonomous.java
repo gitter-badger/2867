@@ -15,8 +15,8 @@ public class TestAutonomous extends LinearOpMode {
     final static double WHEEL_RADIUS = 4;
     final static HardwareMap hardwareMap = new HardwareMap();
     Drive drive = new Drive(DEFAULT_MOTOR_POWER, WHEEL_RADIUS, hardwareMap);
-    ZipLineTrigger leftTrigger = new ZipLineTrigger("zip_trigger_left", 0, 1, hardwareMap);
-    ZipLineTrigger rightTrigger = new ZipLineTrigger("zip_trigger_right", 0, 1, hardwareMap);
+    ZipLineTrigger leftTrigger = new ZipLineTrigger("leftTrigger", 0, 1, hardwareMap);
+    ZipLineTrigger rightTrigger = new ZipLineTrigger("rightTrigger", 0, 1, hardwareMap);
     ColorSensor colorSensor;
 
     @Override
@@ -25,9 +25,9 @@ public class TestAutonomous extends LinearOpMode {
         sleep(2000);
         drive.move(-0.75);
         sleep(2000);
-        drive.turn(true, 0.5);
+        drive.turn("LEFT", 0.5);
         sleep(1000);
-        drive.turn(false, 0.5);
+        drive.turn("RIGHT ", 0.5);
         sleep(1000);
         leftTrigger.triggerDown();
         leftTrigger.triggerUp();

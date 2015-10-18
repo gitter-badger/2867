@@ -34,6 +34,20 @@ public class ZipLineTrigger {
         zipLineTriggerServo.setPosition(position);
     }
 
+    public void incrementTriggerPosition(){
+        double startingPosition = zipLineTriggerServo.getPosition();
+        if(startingPosition != 1.0){
+            zipLineTriggerServo.setPosition(startingPosition + 0.05);
+        }
+    }
+
+    public void decrememtTriggerPosition(){
+        double startingPosition = zipLineTriggerServo.getPosition();
+        if(startingPosition != 0.0){
+            zipLineTriggerServo.setPosition(startingPosition - 0.05);
+        }
+    }
+
     public String toString(){
         return zipLineTriggerServo.getDeviceName() + "is at position" + Double.toString(zipLineTriggerServo.getPosition());
     }

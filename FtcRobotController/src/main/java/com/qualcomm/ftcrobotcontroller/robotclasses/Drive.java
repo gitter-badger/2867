@@ -11,15 +11,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drive {
 
-    private double DEFAULT_POWER;                                                 //Default Motor Power used for all robot drive motors
+    private double DEFAULT_POWER;                                               //Default Motor Power used for all robot drive motors
     private double WHEEL_RADIUS;                                                  //The radius of utilized wheels
 
     private DcMotor motorFrontLeft;
     private DcMotor motorBackLeft;
     private DcMotor motorFrontRight;
     private DcMotor motorBackRight;
-
-    private GyroSensor gyroSensor;
 
     private HardwareMap hardwareMap;
 
@@ -60,11 +58,11 @@ public class Drive {
         moveFreely(DEFAULT_POWER, DEFAULT_POWER);
     }
 
-    public void turn(boolean direction, double power){
-        if(direction){
+    public void turn(String direction, double power){
+        if(direction.equals("LEFT")){
             moveFreely(-power, power);
         }
-        else{
+        else if(direction.equals("RIGHT")){
             moveFreely(power, -power);
         }
     }
