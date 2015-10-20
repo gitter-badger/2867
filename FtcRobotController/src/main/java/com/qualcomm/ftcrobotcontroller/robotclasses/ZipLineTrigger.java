@@ -49,7 +49,7 @@ public class ZipLineTrigger {
     }
 
     public String toString(){
-        return zipLineTriggerServo.getDeviceName() + "is at position" + Double.toString(zipLineTriggerServo.getPosition());
+        return zipLineTriggerServo.getDeviceName() + "is at position: " + Double.toString(zipLineTriggerServo.getPosition());
     }
 
 }

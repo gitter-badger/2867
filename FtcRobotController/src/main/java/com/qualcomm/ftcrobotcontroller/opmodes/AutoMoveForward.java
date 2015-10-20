@@ -25,23 +25,23 @@ public class AutoMoveForward extends LinearOpMode{
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 1);
-        sleep(2000);
+        drive.turn("LEFT", 0.25);
+        sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 1);
-        sleep(2000);
+        drive.turn("LEFT", 0.25);
+        sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 1);
-        sleep(2000);
+        drive.turn("LEFT", 0.25);
+        sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 1);
-        sleep(2000);
+        drive.turn("LEFT", 0.25);
+        sleep(1000);
 
         /*zipTriggerLeft.moveDown();
         sleep(1000);

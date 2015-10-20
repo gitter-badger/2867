@@ -28,9 +28,10 @@ public class ExampleTeleOp extends OpMode {
 
     @Override
     public void init() {
+
         drive = new Drive(DEFAULT_MOTOR_POWER, WHEEL_RADIUS, hardwareMap);
-        leftTrigger = new ZipLineTrigger("leftTrigger", 0, 0.05, hardwareMap);
-        rightTrigger = new ZipLineTrigger("rightTrigger", 0, 0.05, hardwareMap);
+        leftTrigger = new ZipLineTrigger("leftTrigger", 0, 0.25, hardwareMap);
+        rightTrigger = new ZipLineTrigger("rightTrigger", 0, 0.25, hardwareMap);
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -38,7 +39,6 @@ public class ExampleTeleOp extends OpMode {
         dPadRightPressed = false;
 
         telemetry.addData("Stuff", "Just ran init");
-
 
     }
 
@@ -57,33 +57,43 @@ public class ExampleTeleOp extends OpMode {
         }*/
 
         if(gamepad1.dpad_left){
+            if(!dPadLeftPressed){
+                if(!leftTriggerDown){
+                    leftTrigger.triggerDown();
+                    leftTriggerDown = true;
+                    telemetry.addData("Left Trigger:", leftTrigger.toString());
+                }
+                else{
+                    leftTrigger.triggerDown();
+                    leftTriggerDown = false;
+                    telemetry.addData("Left Trigger:", leftTrigger.toString());
+                }
+            }
 
             dPadLeftPressed = true;
 
-            if(leftTriggerDown){
-               leftTrigger.triggerUp();
-               telemetry.addData("Left Trigger:", leftTrigger.toString());
-            }
-            else if(!leftTriggerDown){
-                leftTrigger.triggerDown();
-                telemetry.addData("Left Trigger:", leftTrigger.toString());
-            }
-
         }
         else if(gamepad1.dpad_right){
-            if(!rightTriggerDown) {
-                rightTrigger.triggerDown();
-                rightTriggerDown = true;
-                telemetry.addData("Right Trigger:", rightTrigger.toString());
+            if(!dPadRightPressed){
+                if(!rightTriggerDown) {
+                    rightTrigger.triggerDown();
+                    rightTriggerDown = true;
+                    telemetry.addData("Right Trigger:", rightTrigger.toString());
+                }
+                else{
+                    rightTrigger.triggerUp();
+                    rightTriggerDown = false;
+                    telemetry.addData("Right Trigger:", rightTrigger.toString());
+                }
             }
-            else{
-                rightTrigger.triggerUp();
-                rightTriggerDown = false;
-                telemetry.addData("Right Trigger:", rightTrigger.toString());
-            }
-        }
 
-        dPadLeftPressed = false;
+            dPadRightPressed = true;
+            
+        }
+        else{
+            dPadLeftPressed = false;
+            dPadRightPressed = false;
+        }
 
     }
 

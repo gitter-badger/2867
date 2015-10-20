@@ -20,7 +20,7 @@ public class Drive {
     private DcMotor motorBackRight;
 
     private HardwareMap hardwareMap;
-
+    private GyroSensor gyroSensor;
 
     //Drive Constructor. Dictate the default motorPower (probably 0.5-0.75) and the wheel RADIUS!
     public Drive(double defaultPower, double wheelRadius, HardwareMap hardwareMap) {
@@ -64,6 +64,22 @@ public class Drive {
         }
         else if(direction.equals("RIGHT")){
             moveFreely(power, -power);
+        }
+    }
+
+    public void turnForAngle(double angle){
+        double gyroAngle = 0;
+        while(gyroAngle != angle+1 || gyroAngle != angle || gyroAngle != angle-1){
+            gyroAngle = gyroSensor.getRotation();
+            if(angle > 0){
+                turn("LEFT", 0.5);
+            }
+            else if(angle < 0){
+                turn("RIGHT", 0.5);
+            }
+            else{
+                move(0.5);
+            }
         }
     }
 
