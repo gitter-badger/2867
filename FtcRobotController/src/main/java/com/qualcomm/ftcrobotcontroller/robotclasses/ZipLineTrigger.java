@@ -15,11 +15,16 @@ public class ZipLineTrigger {
     private HardwareMap hardwareMap;
 
     public ZipLineTrigger(String servoName, double upPosition, double downPosition, HardwareMap hardwareMap){
+
+        zipLineTriggerServo = hardwareMap.servo.get(servoName);
+
         this.upPosition = upPosition;
         this.downPosition = downPosition;
         this.hardwareMap = hardwareMap;
+    }
 
-        zipLineTriggerServo = hardwareMap.servo.get(servoName);
+    public void setDirection(Servo.Direction direction){
+        zipLineTriggerServo.setDirection(direction);
     }
 
     public void triggerDown(){

@@ -13,12 +13,16 @@ public class ButtonPresser {
     private Servo buttonPressServo;
     private HardwareMap hardwareMap;
 
-    public ButtonPresser(double outPosition, double inPosition, String servo, HardwareMap hardwareMap) {
+    public ButtonPresser(String servo, double outPosition, double inPosition, HardwareMap hardwareMap) {
         this.outPosition = outPosition;
         this.inPosition = inPosition;
         this.hardwareMap = hardwareMap;
 
         buttonPressServo = hardwareMap.servo.get(servo);
+    }
+
+    public void setDirection(Servo.Direction direction){
+        buttonPressServo.setDirection(direction);
     }
 
     public void swingOut(){

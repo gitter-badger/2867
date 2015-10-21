@@ -77,9 +77,6 @@ public class Drive {
             else if(angle < 0){
                 turn("RIGHT", 0.5);
             }
-            else{
-                move(0.5);
-            }
         }
     }
 
