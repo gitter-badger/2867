@@ -46,11 +46,11 @@ public class ExampleTeleOp extends OpMode {
     public void init() {
 
         drive = new Drive(DEFAULT_MOTOR_POWER, WHEEL_RADIUS, hardwareMap);
-        leftTrigger = new ZipLineTrigger("leftTrigger", 1.0, 0.6, hardwareMap);
-        rightTrigger = new ZipLineTrigger("rightTrigger", 1.0, 0.4, hardwareMap);
-        leftButtonPresser = new ButtonPresser("leftPresser", 0.5, 0.75, hardwareMap);
-        rightButtonPresser = new ButtonPresser("rightPresser", 0.5, 0.75, hardwareMap);
-        bucket = new Bucket("bucket", 0, 0.5, hardwareMap);
+        leftTrigger = new ZipLineTrigger("leftTrigger", 1.0, 0.5, hardwareMap);
+        rightTrigger = new ZipLineTrigger("rightTrigger", 1.0, 0.5, hardwareMap);
+        leftButtonPresser = new ButtonPresser("leftPresser", 1.0, 0.4, hardwareMap);
+        rightButtonPresser = new ButtonPresser("rightPresser", 1.0, 0.4, hardwareMap);
+        bucket = new Bucket("bucket", 1.0, 0.1, hardwareMap);
 
         leftTriggerDown = false;
         rightTriggerDown = false;
@@ -72,10 +72,10 @@ public class ExampleTeleOp extends OpMode {
         rightButtonPresser.setDirection(Servo.Direction.REVERSE);
 
         leftTrigger.setTriggerPosition(1.0);
-        rightTrigger.setTriggerPosition(0.0);
-        leftButtonPresser.setButtonPressServoPosition(0.5);
-        rightButtonPresser.setButtonPressServoPosition(0.5);
-        bucket.setPosition(0);
+        rightTrigger.setTriggerPosition(1.0);
+        leftButtonPresser.setButtonPressServoPosition(1.0);
+        rightButtonPresser.setButtonPressServoPosition(1.0);
+        bucket.setPosition(1.0);
 
     }
 
