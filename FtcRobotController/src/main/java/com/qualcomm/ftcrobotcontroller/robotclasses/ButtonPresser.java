@@ -6,18 +6,24 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by zahnerj01 on 10/16/15.
  */
-public class ButtonPresser {
+public class ButtonPresser{
 
     private double outPosition;
     private double inPosition;
-    private Servo buttonPressServo;
+    private Servo buttonPresserServo;
     private HardwareMap hardwareMap;
 
+<<<<<<< Updated upstream
     public ButtonPresser(String servo, double outPosition, double inPosition, HardwareMap hardwareMap) {
+=======
+    public ButtonPresser(String servoName, double outPosition, double inPosition, HardwareMap hardwareMap){
+
+>>>>>>> Stashed changes
         this.outPosition = outPosition;
         this.inPosition = inPosition;
         this.hardwareMap = hardwareMap;
 
+<<<<<<< Updated upstream
         buttonPressServo = hardwareMap.servo.get(servo);
     }
 
@@ -27,18 +33,13 @@ public class ButtonPresser {
 
     public void swingOut(){
         buttonPressServo.setPosition(outPosition);
+=======
+        buttonPresserServo = hardwareMap.servo.get(servoName);
+>>>>>>> Stashed changes
     }
 
-    public void swingIn(){
-        buttonPressServo.setPosition(inPosition);
-    }
+    public void moveOut() {buttonPresserServo.setPosition(outPosition);}
 
-    public void setButtonPressServoPosition(double position){
-        buttonPressServo.setPosition(position);
-    }
-
-    public String toString(){
-        return buttonPressServo.getDeviceName() + " is at position " + Double.toString(buttonPressServo.getPosition());
-    }
+    public void moveIn() {buttonPresserServo.setPosition(inPosition);}
 
 }
