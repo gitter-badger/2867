@@ -1,7 +1,5 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import android.graphics.Color;
-
 import com.qualcomm.ftcrobotcontroller.robotclasses.Bucket;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ButtonPresser;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
@@ -10,8 +8,6 @@ import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTrigger;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import java.util.Arrays;
 
 /**
  * Created by Nathan Skelton on 9/6/15.
@@ -192,11 +188,11 @@ public class ExampleTeleOp extends OpMode {
             kill();
         }
 
-        telemetry.addData("Left Trigger:", leftTrigger.toString() + " " + Boolean.toString(leftTriggerDown) + " " + Boolean.toString(dPadLeftPressed));
-        telemetry.addData("RightTrigger:", rightTrigger.toString() + " " + Boolean.toString(rightTriggerDown) + " " + Boolean.toString(dPadRightPressed));
-        telemetry.addData("LeftButtonPresser", leftButtonPresser.toString() + " " + Boolean.toString(leftButtonPresserOut) + " " + Boolean.toString(xButtonPressed));
-        telemetry.addData("RightButtonPresser", rightButtonPresser.toString() + " " + Boolean.toString(rightButtonPresserOut) + " " + Boolean.toString(bButtonPressed));
-        telemetry.addData("Bucket", bucket.toString() + " " + Boolean.toString(bucketDown) + " " + Boolean.toString(aButtonPressed));
+        telemetry.addData("Left Trigger:", leftTrigger + " " + leftTriggerDown + " " + dPadLeftPressed);
+        telemetry.addData("RightTrigger:", rightTrigger + " " + rightTriggerDown + " " + dPadRightPressed);
+        telemetry.addData("LeftButtonPresser", leftButtonPresser + " " + leftButtonPresserOut + " " + xButtonPressed);
+        telemetry.addData("RightButtonPresser", rightButtonPresser + " " + rightButtonPresserOut + " " + bButtonPressed);
+        telemetry.addData("Bucket", bucket + " " + bucketDown + " " + aButtonPressed);
 
     }
 
