@@ -5,10 +5,13 @@ import android.graphics.Color;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Bucket;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ButtonPresser;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
+import com.qualcomm.ftcrobotcontroller.robotclasses.GrapplingHook;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTrigger;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import java.util.Arrays;
 
 /**
  * Created by Nathan Skelton on 9/6/15.
@@ -32,6 +35,7 @@ public class ExampleTeleOp extends OpMode {
     private boolean bButtonPressed;
     private boolean xButtonPressed;
     private boolean yButtonPressed;
+    private boolean released;
 
 
     Drive drive;
@@ -40,6 +44,7 @@ public class ExampleTeleOp extends OpMode {
     ButtonPresser leftButtonPresser;
     ButtonPresser rightButtonPresser;
     Bucket bucket;
+    GrapplingHook grapplingHook;
     ColorSensor colorSensor;
 
     @Override
@@ -51,9 +56,12 @@ public class ExampleTeleOp extends OpMode {
         leftButtonPresser = new ButtonPresser("leftPresser", 1.0, 0.4, hardwareMap);
         rightButtonPresser = new ButtonPresser("rightPresser", 1.0, 0.4, hardwareMap);
         bucket = new Bucket("bucket", 1.0, 0.1, hardwareMap);
+        grapplingHook = new GrapplingHook("g_hook_release", "g_hook_winch", hardwareMap);
 
         leftTriggerDown = false;
         rightTriggerDown = false;
+        leftButtonPresserOut = false;
+        rightButtonPresserOut = false;
 
         bucketDown = false;
 
@@ -65,6 +73,7 @@ public class ExampleTeleOp extends OpMode {
         bButtonPressed = false;
         xButtonPressed = false;
         yButtonPressed = false;
+        released = false;
 
         telemetry.addData("Stuff", "Just ran init");
 
@@ -80,18 +89,9 @@ public class ExampleTeleOp extends OpMode {
     }
 
     @Override
-    public void loop() {
+    public void loop(){
 
         drive.moveFreely(gamepad1.left_stick_y, gamepad1.right_stick_y);
-
-        /*if(gamepad1.dpad_left){
-            leftTrigger.incrementTriggerPosition();
-            telemetry.addData("Stuff", leftTrigger.toString());
-        }
-        else if (gamepad1.dpad_right){
-            leftTrigger.decrememtTriggerPosition();
-            telemetry.addData("Stuff", leftTrigger.toString());
-        }*/
 
         if(gamepad1.dpad_left){
             if(!dPadLeftPressed) {
@@ -177,11 +177,57 @@ public class ExampleTeleOp extends OpMode {
             bButtonPressed = false;
         }
 
+        if(gamepad1.left_bumper){
+            grapplingHook.winch();
+            telemetry.addData("Grappling Hook", "Winch in progress!");
+        }
+        else if(gamepad1.right_bumper && !released){
+            grapplingHook.release();
+            released = true;
+            telemetry.addData("Grappling Hook", "Grappling Hook released!");
+            kill();
+        }
+
+        if(gamepad1.start){
+            kill();
+        }
+
         telemetry.addData("Left Trigger:", leftTrigger.toString() + " " + Boolean.toString(leftTriggerDown) + " " + Boolean.toString(dPadLeftPressed));
         telemetry.addData("RightTrigger:", rightTrigger.toString() + " " + Boolean.toString(rightTriggerDown) + " " + Boolean.toString(dPadRightPressed));
         telemetry.addData("LeftButtonPresser", leftButtonPresser.toString() + " " + Boolean.toString(leftButtonPresserOut) + " " + Boolean.toString(xButtonPressed));
         telemetry.addData("RightButtonPresser", rightButtonPresser.toString() + " " + Boolean.toString(rightButtonPresserOut) + " " + Boolean.toString(bButtonPressed));
         telemetry.addData("Bucket", bucket.toString() + " " + Boolean.toString(bucketDown) + " " + Boolean.toString(aButtonPressed));
+
+    }
+
+    public void kill(){
+
+        leftTrigger.triggerUp();
+        rightTrigger.triggerUp();
+
+        leftButtonPresser.swingIn();
+        rightButtonPresser.swingIn();
+
+        bucket.returnToStart();
+
+        drive.move(0);
+
+        leftTriggerDown = false;
+        rightTriggerDown = false;
+        leftButtonPresserOut = false;
+        rightButtonPresserOut = false;
+
+        bucketDown = false;
+
+        dPadLeftPressed = false;
+        dPadRightPressed = false;
+        dPadTopPressed = false;
+        dPadBottomPressed = false;
+        aButtonPressed = false;
+        bButtonPressed = false;
+        xButtonPressed = false;
+        yButtonPressed = false;
+        released = false;
 
     }
 
