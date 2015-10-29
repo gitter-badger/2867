@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
- * Created by Nathan Skelton on 9/6/15.
+ * Created by Joshua Zahner on 9/6/15.
  */
 public class ExampleTeleOp extends OpMode {
 
@@ -182,6 +182,7 @@ public class ExampleTeleOp extends OpMode {
             released = true;
             telemetry.addData("Grappling Hook", "Grappling Hook released!");
             kill();
+
         }
 
         if(gamepad1.start){
@@ -226,7 +227,6 @@ public class ExampleTeleOp extends OpMode {
         released = false;
 
     }
-
 
 
 }

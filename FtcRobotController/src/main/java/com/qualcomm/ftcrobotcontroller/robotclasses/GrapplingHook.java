@@ -21,7 +21,7 @@ public class GrapplingHook {
     }
 
     public void release(){
-        release.setPower(0.3);
+        release.setPower(0.1);
     }
 
 }

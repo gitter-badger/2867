@@ -58,12 +58,17 @@ public class Drive {
         moveFreely(DEFAULT_POWER, DEFAULT_POWER);
     }
 
-    public void turn(String direction, double power){
-        if(direction.equals("LEFT")){
-            moveFreely(-power, power);
-        }
-        else if(direction.equals("RIGHT")){
-            moveFreely(power, -power);
+    public void turn(DriveDirectionEnum direction, double power){
+
+        switch (direction) {
+
+            case LEFT:
+                moveFreely(-power, power);
+                break;
+
+            case RIGHT:
+                moveFreely(power, -power);
+                break;
         }
     }
 
@@ -72,10 +77,10 @@ public class Drive {
         while(gyroAngle != angle+1 || gyroAngle != angle || gyroAngle != angle-1){
             gyroAngle = gyroSensor.getRotation();
             if(angle > 0){
-                turn("LEFT", 0.5);
+                turn(DriveDirectionEnum.LEFT, 0.5);
             }
             else if(angle < 0){
-                turn("RIGHT", 0.5);
+                turn(DriveDirectionEnum.RIGHT, 0.5);
             }
         }
     }
