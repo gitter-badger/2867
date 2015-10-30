@@ -78,8 +78,8 @@ public class ExampleTeleOp extends OpMode {
 
         leftTrigger.setTriggerPosition(1.0);
         rightTrigger.setTriggerPosition(1.0);
-        leftButtonPresser.setButtonPressServoPosition(1.0);
-        rightButtonPresser.setButtonPressServoPosition(1.0);
+        leftButtonPresser.setPosition(1.0);
+        rightButtonPresser.setPosition(1.0);
         bucket.setPosition(1.0);
 
     }

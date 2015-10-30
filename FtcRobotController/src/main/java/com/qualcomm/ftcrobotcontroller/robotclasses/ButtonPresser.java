@@ -13,33 +13,29 @@ public class ButtonPresser{
     private Servo buttonPresserServo;
     private HardwareMap hardwareMap;
 
-<<<<<<< Updated upstream
-    public ButtonPresser(String servo, double outPosition, double inPosition, HardwareMap hardwareMap) {
-=======
     public ButtonPresser(String servoName, double outPosition, double inPosition, HardwareMap hardwareMap){
 
->>>>>>> Stashed changes
         this.outPosition = outPosition;
         this.inPosition = inPosition;
         this.hardwareMap = hardwareMap;
 
-<<<<<<< Updated upstream
-        buttonPressServo = hardwareMap.servo.get(servo);
+        buttonPresserServo = hardwareMap.servo.get(servoName);
     }
 
     public void setDirection(Servo.Direction direction){
-        buttonPressServo.setDirection(direction);
+        buttonPresserServo.setDirection(direction);
     }
 
     public void swingOut(){
-        buttonPressServo.setPosition(outPosition);
-=======
-        buttonPresserServo = hardwareMap.servo.get(servoName);
->>>>>>> Stashed changes
+        buttonPresserServo.setPosition(outPosition);
     }
 
-    public void moveOut() {buttonPresserServo.setPosition(outPosition);}
+    public void swingIn(){
+        buttonPresserServo.setPosition(inPosition);
+    }
 
-    public void moveIn() {buttonPresserServo.setPosition(inPosition);}
+    public void setPosition(double position){
+        buttonPresserServo.setPosition(position);
+    }
 
 }
