@@ -2,6 +2,7 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.robotclasses.ButtonPresser;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
+import com.qualcomm.ftcrobotcontroller.robotclasses.DriveDirectionEnum;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTrigger;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTriggerBridgetAndMichael;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -37,22 +38,22 @@ public class AutoMoveForward extends LinearOpMode{
 
        /* drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 0.25);
+        drive.turn(DriveDirectionEnum.LEFT, 0.25);
         sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 0.25);
+        drive.turn(DriveDirectionEnum.LEFT, 0.25);
         sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 0.25);
+        drive.turn(DriveDirectionEnum.LEFT, 0.25);
         sleep(1000);
 
         drive.move(0.5);
         sleep(1000);
-        drive.turn("LEFT", 0.25);
+        drive.turn(DriveDirectionEnum.LEFT, 0.25);
         sleep(1000);
 
         /*zipTriggerLeft.moveDown();
