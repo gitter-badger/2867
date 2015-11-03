@@ -20,9 +20,9 @@ public class AutonomousRedBridget extends LinearOpMode {
         drive = new Drive(0.5, 5, hardwareMap);
 
 
-//move 5 feet
-//turn 90 degrees
-//move 5 feet five inches
+        //move 5 feet
+        //turn 90 degrees
+        //move 5 feet five inches
 
         waitForStart();
 
@@ -32,13 +32,12 @@ public class AutonomousRedBridget extends LinearOpMode {
         sleep(1350);
         drive.move(0.5);
         sleep(2000);
-
-
-
         drive.turn(DriveDirectionEnum.RIGHT, 0.5);
         sleep(1350);
         drive.move(0.5);
         sleep(350);
+
+
 
     }
 
