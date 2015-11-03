@@ -17,7 +17,7 @@ public class TestDrive extends LinearOpMode {
     Drive drive;
 
     @Override
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
 
         drive = new Drive(0.5, 5, hardwareMap);
 
@@ -25,11 +25,12 @@ public class TestDrive extends LinearOpMode {
         motorRight = hardwareMap.dcMotor.get("RIGHT");
 
 
-    waitForStart();
+        waitForStart();
 
-    motorLeft.setPower(0.5);
-    motorRight.setPower(0.5);
-    sleep(1000);
-    motorLeft.setPower(0);
-    motorRight.setPower(0);
+        motorLeft.setPower(0.5);
+        motorRight.setPower(0.5);
+        sleep(1000);
+        motorLeft.setPower(0);
+        motorRight.setPower(0);
+    }
 }

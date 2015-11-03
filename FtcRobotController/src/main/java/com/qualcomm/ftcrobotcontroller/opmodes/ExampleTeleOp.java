@@ -7,6 +7,7 @@ import com.qualcomm.ftcrobotcontroller.robotclasses.GrapplingHook;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTrigger;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
@@ -17,31 +18,18 @@ public class ExampleTeleOp extends OpMode {
     final static double DEFAULT_MOTOR_POWER = 0.5;
     final static double WHEEL_RADIUS = 5;
 
-    private boolean leftTriggerDown;
-    private boolean rightTriggerDown;
-    private boolean leftButtonPresserOut;
-    private boolean rightButtonPresserOut;
-    private boolean bucketDown;
+    private boolean leftTriggerDown, rightTriggerDown, leftButtonPresserOut, rightButtonPresserOut, bucketDown;
 
-    private boolean dPadLeftPressed;
-    private boolean dPadRightPressed;
-    private boolean dPadTopPressed;
-    private boolean dPadBottomPressed;
-    private boolean aButtonPressed;
-    private boolean bButtonPressed;
-    private boolean xButtonPressed;
-    private boolean yButtonPressed;
+    private boolean dPadLeftPressed, dPadRightPressed, dPadTopPressed, dPadBottomPressed;
+    private boolean aButtonPressed, bButtonPressed, xButtonPressed, yButtonPressed;
     private boolean released;
 
 
     Drive drive;
-    ZipLineTrigger leftTrigger;
-    ZipLineTrigger rightTrigger;
-    ButtonPresser leftButtonPresser;
-    ButtonPresser rightButtonPresser;
+    ZipLineTrigger leftTrigger, rightTrigger;
+    ButtonPresser leftButtonPresser, rightButtonPresser;
     Bucket bucket;
     GrapplingHook grapplingHook;
-    ColorSensor colorSensor;
 
     @Override
     public void init() {
@@ -52,24 +40,7 @@ public class ExampleTeleOp extends OpMode {
         leftButtonPresser = new ButtonPresser("leftPresser", 1.0, 0.4, hardwareMap);
         rightButtonPresser = new ButtonPresser("rightPresser", 1.0, 0.4, hardwareMap);
         bucket = new Bucket("bucket", 1.0, 0.1, hardwareMap);
-        grapplingHook = new GrapplingHook("g_hook_release", "g_hook_winch", hardwareMap);
-
-        leftTriggerDown = false;
-        rightTriggerDown = false;
-        leftButtonPresserOut = false;
-        rightButtonPresserOut = false;
-
-        bucketDown = false;
-
-        dPadLeftPressed = false;
-        dPadRightPressed = false;
-        dPadTopPressed = false;
-        dPadBottomPressed = false;
-        aButtonPressed = false;
-        bButtonPressed = false;
-        xButtonPressed = false;
-        yButtonPressed = false;
-        released = false;
+        //grapplingHook = new GrapplingHook("g_hook_release", "g_hook_winch", hardwareMap);
 
         telemetry.addData("Stuff", "Just ran init");
 
@@ -173,7 +144,7 @@ public class ExampleTeleOp extends OpMode {
             bButtonPressed = false;
         }
 
-        if(gamepad1.left_bumper){
+        /*if(gamepad1.left_bumper){
             grapplingHook.winch();
             telemetry.addData("Grappling Hook", "Winch in progress!");
         }
@@ -183,7 +154,7 @@ public class ExampleTeleOp extends OpMode {
             telemetry.addData("Grappling Hook", "Grappling Hook released!");
             kill();
 
-        }
+        }*/
 
         if(gamepad1.start){
             kill();

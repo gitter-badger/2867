@@ -60,6 +60,7 @@ public class FtcOpModeRegister implements OpModeRegister {
       manager.register("B&M Autonomous", AutoMoveForward.class);
       manager.register("Servo Tester", ServoTester.class);
       manager.register("Autonomous", AutonomousRedBridget.class);
+      manager.register("Color Sensor Test", ColorSensorTester.class);
 
 
     /*

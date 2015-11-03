@@ -2,6 +2,7 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.robotclasses.ButtonPresser;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
+import com.qualcomm.ftcrobotcontroller.robotclasses.DriveDirectionEnum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
@@ -27,11 +28,14 @@ public class AutonomousRedBridget extends LinearOpMode {
 
         drive.move(0.5);
         sleep(2100);
-        drive.turn("RIGHT", 0.5);
+        drive.turn(DriveDirectionEnum.RIGHT, 0.5);
         sleep(1350);
         drive.move(0.5);
         sleep(2000);
-        drive.turn("RIGHT", 0.5);
+
+
+
+        drive.turn(DriveDirectionEnum.RIGHT, 0.5);
         sleep(1350);
         drive.move(0.5);
         sleep(350);

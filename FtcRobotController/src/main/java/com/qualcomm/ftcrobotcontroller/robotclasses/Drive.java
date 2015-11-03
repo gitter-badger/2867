@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Drive {
 
     private double DEFAULT_POWER;                                               //Default Motor Power used for all robot drive motors
-    private double WHEEL_RADIUS;                                                  //The radius of utilized wheels
+    private double WHEEL_RADIUS;                                                //The radius of utilized wheels
 
     private DcMotor motorFrontLeft;
     private DcMotor motorBackLeft;
@@ -20,13 +20,16 @@ public class Drive {
     private DcMotor motorBackRight;
 
     private HardwareMap hardwareMap;
-    private GyroSensor gyroSensor;
+
+    private GyroHelper gyroHelper;
 
     //Drive Constructor. Dictate the default motorPower (probably 0.5-0.75) and the wheel RADIUS!
     public Drive(double defaultPower, double wheelRadius, HardwareMap hardwareMap) {
         this.DEFAULT_POWER = defaultPower;
         this.WHEEL_RADIUS = wheelRadius;
         this.hardwareMap = hardwareMap;
+
+        gyroHelper = new GyroHelper(hardwareMap);
         
         motorFrontLeft = hardwareMap.dcMotor.get("motor_drive_front_left");                 //maps front-left motor to variable
         motorFrontRight = hardwareMap.dcMotor.get("motor_drive_front_right");               //maps front-right motor to variable
@@ -72,17 +75,23 @@ public class Drive {
         }
     }
 
-    public void turnForAngle(double angle){
-        double gyroAngle = 0;
-        while(gyroAngle != angle+1 || gyroAngle != angle || gyroAngle != angle-1){
-            gyroAngle = gyroSensor.getRotation();
-            if(angle > 0){
-                turn(DriveDirectionEnum.LEFT, 0.5);
-            }
-            else if(angle < 0){
+    public void turnForAngle(double angle, DriveDirectionEnum direction){
+
+        gyroHelper.calibrate();
+
+        angle = Math.abs(angle);
+
+        if(direction == DriveDirectionEnum.RIGHT){
+            while(angle > gyroHelper.getAngle()) {
                 turn(DriveDirectionEnum.RIGHT, 0.5);
             }
         }
+        else{
+            while(angle > gyroHelper.getAngle()){
+                turn(DriveDirectionEnum.LEFT, 0.5);
+            }
+        }
+
     }
 
 }

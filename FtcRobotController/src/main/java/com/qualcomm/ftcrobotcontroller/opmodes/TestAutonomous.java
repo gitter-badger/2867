@@ -1,6 +1,7 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
+import com.qualcomm.ftcrobotcontroller.robotclasses.DriveDirectionEnum;
 import com.qualcomm.ftcrobotcontroller.robotclasses.ZipLineTrigger;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -25,9 +26,9 @@ public class TestAutonomous extends LinearOpMode {
         sleep(2000);
         drive.move(-0.75);
         sleep(2000);
-        drive.turn("LEFT", 0.5);
+        drive.turn(DriveDirectionEnum.LEFT, 0.5);
         sleep(1000);
-        drive.turn("RIGHT ", 0.5);
+        drive.turn(DriveDirectionEnum.RIGHT, 0.5);
         sleep(1000);
         leftTrigger.triggerDown();
         leftTrigger.triggerUp();
