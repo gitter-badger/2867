@@ -41,13 +41,13 @@ public class ShowCase extends LinearOpMode {
         sleep(1000);
         zipTriggerRight.triggerUp();
         sleep(1000);
-        buttonPresserLeft.moveOut();
+        buttonPresserLeft.swingOut();
         sleep(1000);
-        buttonPresserLeft.moveIn();
+        buttonPresserLeft.swingIn();
         sleep(1000);
-        buttonPresserRight.moveOut();
+        buttonPresserRight.swingOut();
         sleep(1000);
-        buttonPresserRight.moveIn();
+        buttonPresserRight.swingIn();
         sleep(1000);
         bucket.forward();
         sleep(1000);
