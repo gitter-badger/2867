@@ -1,47 +1,41 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.robotclasses.ButtonPresser;
 import com.qualcomm.ftcrobotcontroller.robotclasses.Drive;
 import com.qualcomm.ftcrobotcontroller.robotclasses.DriveDirectionEnum;
+import com.qualcomm.ftcrobotcontroller.robotclasses.Bucket;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
- * Created by farrellb on 10/20/15.
+ * Created by farrellb on 11/6/15.
  */
-public class AutonomousRedBridget extends LinearOpMode {
+public class AutonomousBridget1 extends LinearOpMode {
 
     Drive drive;
-    ButtonPresser buttonPresserLeft;
-    ButtonPresser buttonPresserRight;
+    Bucket bucket;
 
     @Override
     public void runOpMode() throws InterruptedException{
 
         drive = new Drive(0.5, 5, hardwareMap);
+        bucket = new Bucket("bucket", 1.0, 0.1, hardwareMap);
 
 
-        //move 5 feet
-        //turn 90 degrees
-        //move 5 feet five inches
+        //move 115 inches
+        //turn 140 degrees
+        //move 30 inches
 
         waitForStart();
 
         drive.move(0.5);
-        sleep(2100);
+        sleep(3050);
         drive.turn(DriveDirectionEnum.RIGHT, 0.5);
-        sleep(1350);
+        sleep(500);
         drive.move(0.5);
-        sleep(2000);
-        drive.turn(DriveDirectionEnum.RIGHT, 0.5);
-        sleep(1750);
-        drive.move(0.5);
-        sleep(1150);
-
+        sleep(1400);
         drive.move(0);
-
-
-
+        bucket.forward();
+        sleep(100);
+        bucket.returnToStart();
     }
 
 }
-

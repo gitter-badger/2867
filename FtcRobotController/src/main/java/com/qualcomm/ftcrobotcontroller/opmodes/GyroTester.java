@@ -12,7 +12,7 @@ public class GyroTester extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException{
 
-        Drive drive  = new Drive(0.5, 5, hardwareMap);
+        /*Drive drive  = new Drive(0.5, 5, hardwareMap);
 
         drive.move();
         sleep(1000);
@@ -27,7 +27,7 @@ public class GyroTester extends LinearOpMode {
         drive.move();
         sleep(1000);
 
-        drive.turnForAngle(90, DriveDirectionEnum.LEFT);
+        drive.turnForAngle(90, DriveDirectionEnum.LEFT);*/
 
 
     }

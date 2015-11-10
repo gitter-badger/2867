@@ -29,7 +29,7 @@ public class Drive {
         this.WHEEL_RADIUS = wheelRadius;
         this.hardwareMap = hardwareMap;
 
-        gyroHelper = new GyroHelper(hardwareMap);
+        //gyroHelper = new GyroHelper(hardwareMap);
         
         motorFrontLeft = hardwareMap.dcMotor.get("motor_drive_front_left");                 //maps front-left motor to variable
         motorFrontRight = hardwareMap.dcMotor.get("motor_drive_front_right");               //maps front-right motor to variable
@@ -75,7 +75,7 @@ public class Drive {
         }
     }
 
-    public void turnForAngle(double angle, DriveDirectionEnum direction){
+    /*public void turnForAngle(double angle, DriveDirectionEnum direction){
 
         gyroHelper.calibrate();
 
@@ -92,6 +92,6 @@ public class Drive {
             }
         }
 
-    }
+    }*/
 
 }
