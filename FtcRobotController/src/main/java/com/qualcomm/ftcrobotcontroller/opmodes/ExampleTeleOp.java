@@ -22,7 +22,7 @@ public class ExampleTeleOp extends OpMode {
 
     private boolean dPadLeftPressed, dPadRightPressed, dPadTopPressed, dPadBottomPressed;
     private boolean aButtonPressed, bButtonPressed, xButtonPressed, yButtonPressed;
-    private boolean released;
+    private boolean released, rightBumperPressed, leftBumperPressed;
 
 
     Drive drive;
@@ -40,7 +40,7 @@ public class ExampleTeleOp extends OpMode {
         leftButtonPresser = new ButtonPresser("leftPresser", 1.0, 0.4, hardwareMap);
         rightButtonPresser = new ButtonPresser("rightPresser", 1.0, 0.4, hardwareMap);
         bucket = new Bucket("bucket", 1.0, 0.1, hardwareMap);
-        //grapplingHook = new GrapplingHook("g_hook_release", "g_hook_winch", hardwareMap);
+        grapplingHook = new GrapplingHook("release", "winch", hardwareMap);
 
         telemetry.addData("Stuff", "Just ran init");
 
@@ -57,17 +57,16 @@ public class ExampleTeleOp extends OpMode {
     }
 
     @Override
-    public void loop(){
+    public void loop() {
 
         drive.moveFreely(gamepad1.left_stick_y, gamepad1.right_stick_y);
 
-        if(gamepad1.dpad_left){
-            if(!dPadLeftPressed) {
+        if (gamepad1.dpad_left) {
+            if (!dPadLeftPressed) {
                 if (!leftTriggerDown) {
                     leftTrigger.triggerDown();
                     leftTriggerDown = true;
-                }
-                else {
+                } else {
                     leftTrigger.triggerUp();
                     leftTriggerDown = false;
                 }
@@ -75,14 +74,12 @@ public class ExampleTeleOp extends OpMode {
 
             dPadLeftPressed = true;
 
-        }
-        else if(gamepad1.dpad_right){
-            if(!dPadRightPressed){
-                if(!rightTriggerDown){
+        } else if (gamepad1.dpad_right) {
+            if (!dPadRightPressed) {
+                if (!rightTriggerDown) {
                     rightTrigger.triggerDown();
                     rightTriggerDown = true;
-                }
-                else{
+                } else {
                     rightTrigger.triggerUp();
                     rightTriggerDown = false;
                 }
@@ -90,74 +87,77 @@ public class ExampleTeleOp extends OpMode {
 
             dPadRightPressed = true;
 
-        }
-        else{
+        } else {
             dPadLeftPressed = false;
             dPadRightPressed = false;
         }
 
 
-        if(gamepad1.a){
-            if(!aButtonPressed){
-                if(!bucketDown){
+        if (gamepad1.a) {
+            if (!aButtonPressed) {
+                if (!bucketDown) {
                     bucket.forward();
                     bucketDown = true;
-                }
-                else{
+                } else {
                     bucket.returnToStart();
                     bucketDown = false;
                 }
             }
 
             aButtonPressed = true;
-        }
-        else if(gamepad1.x){
-            if(!xButtonPressed){
-                if(!leftButtonPresserOut) {
+        } else if (gamepad1.x) {
+            if (!xButtonPressed) {
+                if (!leftButtonPresserOut) {
                     leftButtonPresser.swingOut();
                     leftButtonPresserOut = true;
-                }
-                else{
+                } else {
                     leftButtonPresser.swingIn();
                     leftButtonPresserOut = false;
                 }
             }
 
             xButtonPressed = true;
-        }
-        else if(gamepad1.b){
-            if(!bButtonPressed){
-                if(!rightButtonPresserOut){
+        } else if (gamepad1.b) {
+            if (!bButtonPressed) {
+                if (!rightButtonPresserOut) {
                     rightButtonPresser.swingOut();
                     rightButtonPresserOut = true;
-                }
-                else{
+                } else {
                     rightButtonPresser.swingIn();
                     rightButtonPresserOut = false;
                 }
             }
 
             bButtonPressed = true;
-        }
-        else{
+        } else {
             aButtonPressed = false;
             xButtonPressed = false;
             bButtonPressed = false;
         }
 
-        /*if(gamepad1.left_bumper){
+        if (gamepad1.left_bumper) {
             grapplingHook.winch();
             telemetry.addData("Grappling Hook", "Winch in progress!");
         }
-        else if(gamepad1.right_bumper && !released){
+        else if(gamepad1.left_trigger == 1){
+            grapplingHook.winchBackwards();
+        }
+        else{
+            grapplingHook.stopWinch();
+        }
+
+        if (gamepad1.right_bumper) {
             grapplingHook.release();
-            released = true;
             telemetry.addData("Grappling Hook", "Grappling Hook released!");
-            kill();
+        }
+        else if(gamepad1.right_trigger > 0.75){
+            grapplingHook.releaseBackwards();
+        }
+        else{
+            grapplingHook.stopRelease();
+        }
 
-        }*/
-
-        if(gamepad1.start){
+        if (gamepad1.start) {
             kill();
         }
 
@@ -169,7 +169,7 @@ public class ExampleTeleOp extends OpMode {
 
     }
 
-    public void kill(){
+    public void kill() {
 
         leftTrigger.triggerUp();
         rightTrigger.triggerUp();
@@ -180,6 +180,9 @@ public class ExampleTeleOp extends OpMode {
         bucket.returnToStart();
 
         drive.move(0);
+
+        grapplingHook.stopRelease();
+        grapplingHook.stopWinch();
 
         leftTriggerDown = false;
         rightTriggerDown = false;

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cDevice;
 
 /**
  * Created by Nathan Skelton on 9/5/15.
@@ -21,13 +22,20 @@ public class Drive {
 
     private HardwareMap hardwareMap;
 
+    private I2cDevice gyroSensor;
+
     private GyroHelper gyroHelper;
+
+    private MRGyroHelper mrGyroHelper;
 
     //Drive Constructor. Dictate the default motorPower (probably 0.5-0.75) and the wheel RADIUS!
     public Drive(double defaultPower, double wheelRadius, HardwareMap hardwareMap) {
         this.DEFAULT_POWER = defaultPower;
         this.WHEEL_RADIUS = wheelRadius;
         this.hardwareMap = hardwareMap;
+
+        gyroSensor = hardwareMap.i2cDevice.get("gyro_sensor");
+        mrGyroHelper = new MRGyroHelper(gyroSensor);
 
         //gyroHelper = new GyroHelper(hardwareMap);
         
@@ -75,9 +83,9 @@ public class Drive {
         }
     }
 
-    /*public void turnForAngle(double angle, DriveDirectionEnum direction){
+    public void turnForAngle(double angle, DriveDirectionEnum direction){
 
-        gyroHelper.calibrate();
+        /*gyroHelper.calibrate();
 
         angle = Math.abs(angle);
 
@@ -90,8 +98,8 @@ public class Drive {
             while(angle > gyroHelper.getAngle()){
                 turn(DriveDirectionEnum.LEFT, 0.5);
             }
-        }
+        }*/
 
-    }*/
+    }
 
 }

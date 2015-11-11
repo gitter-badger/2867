@@ -21,8 +21,8 @@ public class TestDrive extends LinearOpMode {
 
         drive = new Drive(0.5, 5, hardwareMap);
 
-        motorLeft = hardwareMap.dcMotor.get("LEFT");
-        motorRight = hardwareMap.dcMotor.get("RIGHT");
+        motorLeft = hardwareMap.dcMotor.get("left");
+        motorRight = hardwareMap.dcMotor.get("right");
 
 
         waitForStart();

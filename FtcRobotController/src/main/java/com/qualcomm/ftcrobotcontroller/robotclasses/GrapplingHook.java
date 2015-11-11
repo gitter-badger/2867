@@ -19,9 +19,19 @@ public class GrapplingHook {
     public void winch(){
         winch.setPower(0.8);
     }
+    public void winchBackwards(){ winch.setPower(-0.8); }
 
     public void release(){
-        release.setPower(0.1);
+        release.setPower(0.8);
+    }
+    public void releaseBackwards(){ release.setPower(-0.8);}
+
+    public void stopWinch(){
+        winch.setPower(0);
+    }
+
+    public void stopRelease(){
+        release.setPower(0);
     }
 
 }
