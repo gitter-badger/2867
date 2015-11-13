@@ -34,7 +34,6 @@ public class AutonomousBridget1 extends LinearOpMode {
         sleep(1400);
         drive.move(0);
         bucket.forward();
-        sleep(100);
         bucket.returnToStart();
     }
 

@@ -54,13 +54,24 @@ public class ExampleTeleOp extends OpMode {
 
         bucket.setPosition(1.0);
 
+        gamepad1.left_stick_y = 0;
+        gamepad1.right_stick_y = 0;
+
     }
 
     @Override
     public void loop() {
 
+        gamepad1.setJoystickDeadzone((float) 0.2);
+
         drive.moveFreely(gamepad1.left_stick_y, gamepad1.right_stick_y);
 
+         /**   DIRECTIONAL PAD CONTROLS
+         *
+         *     LEFT: Left Zipline Trigger
+         *     RIGHT: Right Zipline Trigger
+         *
+         */
         if (gamepad1.dpad_left) {
             if (!dPadLeftPressed) {
                 if (!leftTriggerDown) {
@@ -92,7 +103,14 @@ public class ExampleTeleOp extends OpMode {
             dPadRightPressed = false;
         }
 
-
+        /**     BUTTONS CONTROLS
+         *
+         *      A: Bucket
+         *      B: Right Button Presser
+         *      X: Left Button Presser
+         *      Y: None
+         *
+         */
         if (gamepad1.a) {
             if (!aButtonPressed) {
                 if (!bucketDown) {
@@ -134,6 +152,8 @@ public class ExampleTeleOp extends OpMode {
             xButtonPressed = false;
             bButtonPressed = false;
         }
+
+
 
         if (gamepad1.left_bumper) {
             grapplingHook.winch();

@@ -26,7 +26,7 @@ public class Drive {
 
     private GyroHelper gyroHelper;
 
-    private MRGyroHelper mrGyroHelper;
+    //private MRGyroHelper mrGyroHelper;
 
     //Drive Constructor. Dictate the default motorPower (probably 0.5-0.75) and the wheel RADIUS!
     public Drive(double defaultPower, double wheelRadius, HardwareMap hardwareMap) {
@@ -34,8 +34,8 @@ public class Drive {
         this.WHEEL_RADIUS = wheelRadius;
         this.hardwareMap = hardwareMap;
 
-        gyroSensor = hardwareMap.i2cDevice.get("gyro_sensor");
-        mrGyroHelper = new MRGyroHelper(gyroSensor);
+        //gyroSensor = hardwareMap.i2cDevice.get("gyro_sensor");
+        //mrGyroHelper = new MRGyroHelper(gyroSensor);
 
         //gyroHelper = new GyroHelper(hardwareMap);
         
